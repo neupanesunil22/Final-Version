@@ -3,9 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mailseal — Agentic AI Lead Generation</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Mailseal — Agentic AI Lead Generation Platform</title>
+  <meta name="description" content="Autonomous AI agents that find, engage, and book meetings with your ideal customers. Private beta.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--lime:#ccff00;--pink:#ff00c8;--yellow:#ffff00;--cyan:#00ffff;--black:#000;}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;background:#000;color:#fff;line-height:1.6;overflow-x:hidden;}
+    .container{max-width:1280px;margin:0 auto;padding:0 1.5rem;}
+
+    header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);padding:1rem 0;border-bottom:4px solid var(--pink);}
+    nav{display:flex;justify-content:space-between;align-items:center;}
+    .logo{font-size:2.2rem;font-weight:900;background:linear-gradient(90deg,var(--pink),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .nav-links a{color:#fff;margin-left:2rem;font-weight:600;text-decoration:none;}
+    .nav-links a:hover{color:var(--lime);}
+    .btn-book{background:var(--lime);color:#000;padding:0.7rem 1.8rem;border-radius:999px;font-weight:900;font-size:0.95rem;}
+
+    .hero{padding-top:160px;text-align:center;}
+    .hero h1{font-size:3.6rem;font-weight:900;line-height:1.15;margin-bottom:1rem;}
+    @media(max-width:768px){.hero h1{font-size:2.4rem;}}
+    .hero p{font-size:1.2rem;max-width:800px;margin:1.5rem auto;opacity:0.9;}
+    .hero-buttons{margin:2.5rem 0;}
+    .hero-buttons a{padding:0.9rem 2rem;border-radius:999px;font-weight:800;margin:0 0.8rem;text-decoration:none;}
+    .btn-outline{border:2px solid #fff;}
+    .btn-pink{background:var(--pink);}
+
+    .lime-block{background:linear-gradient(135deg,var(--lime),#88ff00);color:#000;padding:5rem 2rem;margin:6rem 1rem 0;border-radius:3rem;text-align:center;}
+    .lime-block h2{font-size:2.8rem;line-height:1.2;font-weight:900;}
+    @media(max-width:768px){.lime-block h2{font-size:2rem;}}
+    .founder-img{width:260px;height:260px;border-radius:50%;border:8px solid #000;margin:2rem auto 0;object-fit:cover;}
+
+    section{padding:5rem 0;}
+    h2{font-size:2.8rem;font-weight:900;margin-bottom:1.5rem;text-align:center;}
+    @media(max-width:768px){h2{font-size:2rem;}section{padding:4rem 0;}}
+
+    .service-grid,.industry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:3rem;}
+    .service-card,.industry-card{background:rgba(255,255,255,0.04);border:2px solid var(--lime);border-radius:2.5rem;padding:1.8rem;text-align:center;}
+    .circ{width:60px;height:60px;background:var(--lime);color:#000;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:900;}
+
+    .speech{background:#111;border:3px solid #fff;border-radius:3rem;padding:2.5rem;margin:4rem auto;max-width:900px;font-size:1.25rem;position:relative;}
+    .speech:before{content:'';position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);border:20px solid transparent;border-top:20px solid #fff;}
+
+    .funnel-img{max-width:100%;border-radius:1.5rem;box-shadow:0 0 80px var(--cyan);margin-top:3rem;}
+
+    .infra{background:var(--yellow);color:#000;padding:5rem 2rem;border-radius:3rem;margin:6rem 1rem;text-align:center;}
+    .infra h2{font-size:3rem;}
+
+    .agent-grid{display:grid;gap:4rem;margin-top:4rem;}
+    .agent-card{background:rgba(255,0,199,0.12);border:4px solid var(--pink);border-radius:3rem;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;}
+    @media(max-width:768px){.agent-card{grid-template-columns:1fr;text-align:center;}}
+    .agent-card h3{font-size:2.4rem;color:var(--yellow);margin-bottom:1rem;}
+    .agent-btn{background:var(--lime);color:#000;padding:0.9rem 2.5rem;border-radius:999px;font-weight:900;display:inline-block;margin-top:1.5rem;}
+
+    .jobs,.press{padding:5rem 2rem;border-radius:3rem;margin:6rem 1rem;text-align:center;}
+    .jobs{background:var(--lime);color:#000;}
+    .press{background:linear-gradient(135deg,#8b00ff,var(--pink));}
+
+    .cta{padding:8rem 2rem;text-align:center;}
+    .cta h2{font-size:4.2rem;margin-bottom:1rem;}
+    @media(max-width:768px){.cta h2{font-size:2.6rem;}}
+    .email-input{padding:1.3rem 2rem;width:100%;max-width:500px;border-radius:999px;background:rgba(255,255,255,0.1);border:3px solid #fff;font-size:1.1rem;margin:2rem auto;display:block;}
+    .btn-cta{background:var(--lime);color:#000;padding:1.3rem 4rem;border-radius:999px;font-size:1.5rem;font-weight:900;}
+  </style>
 </head>
 <body>
 
@@ -14,10 +73,10 @@
       <nav>
         <div class="logo">Mailseal</div>
         <div class="nav-links">
-          <a href="pricing.html">Pricing</a>
-          <a href="agents.html">Agents</a>
-          <a href="company.html">Company</a>
-          <a href="#cta" class="btn-lime">Book a Call</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#docs">Docs</a>
+          <a href="#blog">Blog</a>
+          <a href="#cta" class="btn-book">Book a Call</a>
         </div>
       </nav>
     </div>
@@ -25,37 +84,125 @@
 
   <section class="hero">
     <div class="container">
-      <h1>We are building a Agentic AI Engine with an expert-led strategy to find, engage, and book meetings with your ideal customers.</h1>
-      <div style="margin:3rem 0;">
-        <a href="#services" class="btn-outline">EXPLORE OUR SERVICES</a>
-        <a href="#cta" class="btn-pink">BOOK A DEMO</a>
+      <h1>Agentic AI that finds, engages,<br>and books meetings with your ideal customers — autonomously.</h1>
+      <p>Seal, Octopus, and Jellyfish work 24/7 inside your inbox. No SDRs. No agency.</p>
+      <div class="hero-buttons">
+        <a href="#agents" class="btn-outline">MEET THE AGENTS</a>
+        <a href="#cta" class="btn-pink">REQUEST EARLY ACCESS</a>
       </div>
     </div>
   </section>
 
   <section class="lime-block">
     <div class="container">
-      <h2>Get over 50 qualified B2B leads/month – found and contacted by AI agents that work 24/7.</h2>
-      <p style="font-size:1.3rem;max-width:900px;margin:2rem auto;">We deliver exclusive lead opportunities through a proprietary, human-centric process powered by our industry-leading AI infrastructure.</p>
-      <a href="#cta" style="background:#000;color:#fff;padding:1rem 2.5rem;border-radius:999px;font-weight:900;display:inline-block;">GET A QUOTE</a>
-      <img src="https://via.placeholder.com/300x300/000/fff?text=Dani" class="founder-img" alt="Founder">
+      <h2>50+ qualified meetings per month<br>— delivered by AI agents that never sleep.</h2>
+      <p style="font-size:1.2rem;max-width:800px;margin:1.5rem auto;">
+        Fully autonomous lead generation platform. Built for B2B founders who want pipeline without the overhead.
+      </p>
+      <img src="https://via.placeholder.com/260x260/000/fff?text=Founder" class="founder-img" alt="Founder">
     </div>
   </section>
 
-  <!-- Continue with all sections from your screenshot -->
-  <!-- Services, precision speech, industries, funnel, infra, agents, jobs, press, CTA -->
+  <section id="services">
+    <div class="container">
+      <h2>Everything you need in one platform</h2>
+      <div class="service-grid">
+        <div class="service-card"><div class="circ">01</div><strong>Email Outreach</strong><p>Hyper-personalized sequences that land in primary inbox</p></div>
+        <div class="service-card"><div class="circ">02</div><strong>Lead Intelligence</strong><p>Real-time LinkedIn + company enrichment</p></div>
+        <div class="service-card"><div class="circ">03</div><strong>Meeting Booking</strong><p>AI books calls directly on your calendar</p></div>
+        <div class="service-card"><div class="circ">04</div><strong>Deliverability Engine</strong><p>Warm-up, reputation, and inbox placement built-in</p></div>
+        <div class="service-card"><div class="circ">05</div><strong>Lead Scoring</strong><p>Jellyfish predicts who’s ready to buy</p></div>
+        <div class="service-card"><div class="circ">06</div><strong>Chatbot Layer</strong><p>Website → qualified meeting in <60 seconds</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+-speech">
+      <h2 style="font-size:3.5rem;line-height:1.1;background:linear-gradient(90deg,#fff,var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+        We look beyond industry barriers;<br>precision outreach
+      </h2>
+      <div class="speech">
+        Generic tools fail in complex verticals. Mailseal is built for AI, fintech, biotech, cyber, medtech, and renewable energy — where decision-makers hide behind layers of gatekeepers.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container industry-grid">
+      <div class="industry-card"><div class="circ">01</div><strong>AI / ML Startups</strong></div>
+      <div class="industry-card"><div class="circ">02</div><strong>Renewable Energy</strong></div>
+      <div class="industry-card"><div class="circ">03</div><strong>Fintech</strong></div>
+      <div class="industry-card"><div class="circ">04</div><strong>Cybersecurity</strong></div>
+      <div class="industry-card"><div class="circ">05</div><strong>Biotech & Pharma</strong></div>
+      <div class="industry-card"><div class="circ">06</div><strong>MedTech</strong></div>
+    </div>
+  </section>
+
+  <section style="text-align:center;">
+    <div class="container">
+      <h2>Own your entire funnel</h2>
+      <img src="https://via.placeholder.com/1100x550/00ffff/000?text=Funnel+100%25+→+35%25" class="funnel-img" alt="Funnel">
+    </div>
+  </section>
+
+  <section class="infra">
+    <div class="container">
+      <h2>Agentic AI Email Infrastructure</h2>
+      <p style="font-size:1.3rem;max-width:900px;margin:2rem auto;">
+        We built our own platform from scratch because nothing else could handle autonomous multi-agent workflows at scale.
+      </p>
+    </div>
+  </section>
+
+  <section id="agents">
+    <div class="container agent-grid">
+      <div class="agent-card">
+        <div><img src="https://via.placeholder.com/500x500/00ff20/000?text=Seal" style="border-radius:2rem;width:100%;" alt="Seal"></div>
+        <div><h3>Seal the Sender</h3><p>Orchestrates your entire campaign — warm-up, sending, follow-ups, replies.</p><a href="#cta" class="agent-btn">REQUEST EARLY ACCESS</a></div>
+      </div>
+      <div class="agent-card">
+        <div><h3>Octopus the Data Miner</h3><p>Finds and verifies your ideal prospects across LinkedIn, Apollo, web — 24/7.</p><a href="#cta" class="agent-btn">REQUEST EARLY ACCESS</a></div>
+        <div><img src="https://via.placeholder.com/500x500/ff69b4/000?text=Octopus" style="border-radius:2rem;width:100%;" alt="Octopus"></div>
+      </div>
+      <div class="agent-card">
+        <div><img src="https://via.placeholder.com/500x500/87CEEB/000?text=Jellyfish" style="border-radius:2rem;width:100%;" alt="Jellyfish"></div>
+        <div><h3>Jellyfish the Lead Scorer</h3><p>Predicts intent in real time. Knows who’s ready to book before they do.</p><a href="#cta" class="agent-btn">REQUEST EARLY ACCESS</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="jobs">
+    <div class="container">
+      <h2>Jobs @ Mailseal</h2>
+      <p>We’re hiring builders who ship fast and love AI.</p>
+      <p style="margin-top:2rem;">jobs@mailseal.co</p>
+    </div>
+  </section>
+
+  <section class="press">
+    <div class="container">
+      <h2>Media & Press</h2>
+      <p>media@mailseal.co</p>
+    </div>
+  </section>
 
   <section class="cta" id="cta">
     <div class="container">
-      <h2>Be first in line.</h2>
-      <p style="font-size:1.8rem;">Private beta • Limited spots • No credit card required</p>
+      <h2>Private Beta — Limited Spots</h2>
+      <p style="font-size:1.6rem;">Be first. No credit card required.</p>
       <input type="email" placeholder="name@company.com" class="email-input">
       <button class="btn-cta">REQUEST EARLY ACCESS</button>
+      <p style="margin-top:3rem;">Or email → dani@mailseal.co</p>
     </div>
   </section>
 
-  <footer>
-    <div class="container">© 2025 Mailseal • Private Beta • dani@mailseal.co</div>
+  <footer style="padding:4rem 0;text-align:center;background:#111;opacity:0.7;">
+    <div class="container">
+      <p>© 2025 Mailseal • Private Beta</p>
+    </div>
   </footer>
+
 </body>
 </html>
