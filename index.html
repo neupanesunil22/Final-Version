@@ -5,65 +5,509 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mailseal — Agentic AI Lead Generation Platform</title>
   <meta name="description" content="Autonomous AI agents that find, engage, and book meetings with your ideal customers. Private beta.">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    :root{--lime:#ccff00;--pink:#ff00c8;--yellow:#ffff00;--cyan:#00ffff;--black:#000;}
+    :root{
+      --lime:#ccff00;
+      --pink:#ff00c8;
+      --yellow:#ffff00;
+      --cyan:#00ffff;
+      --black:#000;
+      --purple:#8b00ff;
+    }
     *{margin:0;padding:0;box-sizing:border-box;}
-    body{font-family:'Inter',sans-serif;background:#000;color:#fff;line-height:1.6;overflow-x:hidden;}
-    .container{max-width:1280px;margin:0 auto;padding:0 1.5rem;}
+    body{
+      font-family:'Inter',sans-serif;
+      background:#000;
+      color:#fff;
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+    
+    /* Animated gradient background */
+    body::before{
+      content:'';
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:radial-gradient(circle at 20% 50%, rgba(204,255,0,0.08) 0%, transparent 50%),
+                 radial-gradient(circle at 80% 80%, rgba(255,0,200,0.08) 0%, transparent 50%),
+                 radial-gradient(circle at 40% 20%, rgba(0,255,255,0.06) 0%, transparent 50%);
+      animation:drift 20s ease-in-out infinite;
+      pointer-events:none;
+      z-index:0;
+    }
+    
+    @keyframes drift{
+      0%, 100%{transform:translate(0,0) scale(1);}
+      33%{transform:translate(50px,-30px) scale(1.1);}
+      66%{transform:translate(-30px,40px) scale(0.95);}
+    }
+    
+    .container{max-width:1280px;margin:0 auto;padding:0 1.5rem;position:relative;z-index:1;}
 
-    header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(0,0,0,0.95);backdrop-filter:blur(20px);padding:1rem 0;border-bottom:4px solid var(--pink);}
+    /* Header with glassmorphism */
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:1000;
+      background:rgba(0,0,0,0.7);
+      backdrop-filter:blur(30px) saturate(180%);
+      padding:1rem 0;
+      border-bottom:2px solid transparent;
+      border-image:linear-gradient(90deg,var(--pink),var(--lime),var(--cyan)) 1;
+      box-shadow:0 8px 32px rgba(0,0,0,0.3);
+    }
+    
     nav{display:flex;justify-content:space-between;align-items:center;}
-    .logo{font-size:2.2rem;font-weight:900;background:linear-gradient(90deg,var(--pink),var(--yellow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .nav-links a{color:#fff;margin-left:2rem;font-weight:600;text-decoration:none;}
-    .nav-links a:hover{color:var(--lime);}
-    .btn-book{background:var(--lime);color:#000;padding:0.7rem 1.8rem;border-radius:999px;font-weight:900;font-size:0.95rem;}
+    .logo{
+      font-size:2.2rem;
+      font-weight:900;
+      background:linear-gradient(135deg,var(--pink),var(--yellow),var(--lime));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-size:200% 200%;
+      animation:gradientShift 4s ease infinite;
+    }
+    
+    @keyframes gradientShift{
+      0%, 100%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+    }
+    
+    .nav-links{display:flex;align-items:center;gap:2rem;}
+    .nav-links a{
+      color:#fff;
+      font-weight:600;
+      text-decoration:none;
+      font-size:0.95rem;
+      transition:all 0.3s ease;
+      position:relative;
+    }
+    .nav-links a:not(.btn-book):hover{color:var(--lime);}
+    .nav-links a:not(.btn-book)::after{
+      content:'';
+      position:absolute;
+      bottom:-5px;
+      left:0;
+      width:0;
+      height:2px;
+      background:var(--lime);
+      transition:width 0.3s ease;
+    }
+    .nav-links a:not(.btn-book):hover::after{width:100%;}
+    
+    .btn-book{
+      background:linear-gradient(135deg,var(--lime),#88ff00);
+      color:#000;
+      padding:0.7rem 1.8rem;
+      border-radius:999px;
+      font-weight:900;
+      font-size:0.95rem;
+      box-shadow:0 4px 20px rgba(204,255,0,0.4);
+      transition:all 0.3s ease;
+    }
+    .btn-book:hover{
+      transform:translateY(-2px);
+      box-shadow:0 6px 30px rgba(204,255,0,0.6);
+    }
 
-    .hero{padding-top:160px;text-align:center;}
-    .hero h1{font-size:3.6rem;font-weight:900;line-height:1.15;margin-bottom:1rem;}
+    /* Hero section with enhanced typography */
+    .hero{padding-top:140px;text-align:center;padding-bottom:2.5rem;}
+    .hero h1{
+      font-size:4.2rem;
+      font-weight:900;
+      line-height:1.15;
+      margin-bottom:1.5rem;
+      background:linear-gradient(135deg,#fff 0%,var(--cyan) 50%,var(--pink) 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:fadeInUp 0.8s ease;
+    }
+    
+    @keyframes fadeInUp{
+      from{opacity:0;transform:translateY(30px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+    
     @media(max-width:768px){.hero h1{font-size:2.4rem;}}
-    .hero p{font-size:1.2rem;max-width:800px;margin:1.5rem auto;opacity:0.9;}
-    .hero-buttons{margin:2.5rem 0;}
-    .hero-buttons a{padding:0.9rem 2rem;border-radius:999px;font-weight:800;margin:0 0.8rem;text-decoration:none;}
-    .btn-outline{border:2px solid #fff;}
-    .btn-pink{background:var(--pink);}
+    .hero p{
+      font-size:1.3rem;
+      max-width:800px;
+      margin:1.5rem auto;
+      opacity:0.9;
+      animation:fadeInUp 0.8s ease 0.2s backwards;
+    }
+    .hero-buttons{
+      margin:2.5rem 0;
+      animation:fadeInUp 0.8s ease 0.4s backwards;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:1.5rem;
+      flex-wrap:wrap;
+    }
+    .hero-buttons a{
+      padding:1rem 2.5rem;
+      border-radius:999px;
+      font-weight:800;
+      text-decoration:none;
+      font-size:1rem;
+      transition:all 0.4s ease;
+      display:inline-block;
+    }
+    .btn-outline{
+      border:2px solid #fff;
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+    .btn-outline::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+      transition:left 0.5s ease;
+    }
+    .btn-outline:hover::before{left:100%;}
+    .btn-outline:hover{
+      border-color:var(--lime);
+      color:var(--lime);
+      transform:translateY(-2px);
+      box-shadow:0 8px 25px rgba(204,255,0,0.3);
+    }
+    
+    .btn-pink{
+      background:linear-gradient(135deg,var(--pink),#ff1493);
+      color:#fff;
+      box-shadow:0 4px 20px rgba(255,0,200,0.4);
+    }
+    .btn-pink:hover{
+      transform:translateY(-2px) scale(1.05);
+      box-shadow:0 8px 35px rgba(255,0,200,0.6);
+    }
 
-    .lime-block{background:linear-gradient(135deg,var(--lime),#88ff00);color:#000;padding:5rem 2rem;margin:6rem 1rem 0;border-radius:3rem;text-align:center;}
-    .lime-block h2{font-size:2.8rem;line-height:1.2;font-weight:900;}
+    /* Enhanced lime block with animation */
+    .lime-block{
+      background:linear-gradient(135deg,var(--lime),#88ff00);
+      color:#000;
+      padding:4rem 2rem;
+      margin:1.5rem 1rem 0;
+      border-radius:3rem;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(204,255,0,0.3);
+    }
+    .lime-block::before{
+      content:'';
+      position:absolute;
+      top:-50%;
+      right:-50%;
+      width:100%;
+      height:100%;
+      background:radial-gradient(circle,rgba(255,255,255,0.3),transparent);
+      animation:rotate 10s linear infinite;
+    }
+    
+    @keyframes rotate{
+      from{transform:rotate(0deg);}
+      to{transform:rotate(360deg);}
+    }
+    
+    .lime-block h2{
+      font-size:2.8rem;
+      line-height:1.15;
+      font-weight:900;
+      margin-bottom:1rem;
+      position:relative;
+      z-index:1;
+    }
     @media(max-width:768px){.lime-block h2{font-size:2rem;}}
-    .founder-img{width:260px;height:260px;border-radius:50%;border:8px solid #000;margin:2rem auto 0;object-fit:cover;}
+    .lime-block p{font-size:1.2rem;max-width:800px;margin:1rem auto;position:relative;z-index:1;}
+    .founder-img{
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      border:8px solid #000;
+      margin:2rem auto 0;
+      object-fit:cover;
+      position:relative;
+      z-index:1;
+      box-shadow:0 10px 40px rgba(0,0,0,0.3);
+      transition:transform 0.3s ease;
+    }
+    .founder-img:hover{transform:scale(1.05) rotate(3deg);}
 
-    section{padding:5rem 0;}
-    h2{font-size:2.8rem;font-weight:900;margin-bottom:1.5rem;text-align:center;}
-    @media(max-width:768px){h2{font-size:2rem;}section{padding:4rem 0;}}
+    section{padding:3rem 0;}
+    h2{
+      font-size:2.8rem;
+      font-weight:900;
+      margin-bottom:1.5rem;
+      text-align:center;
+    }
+    @media(max-width:768px){h2{font-size:2rem;}section{padding:2.5rem 0;}}
 
-    .service-grid,.industry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:3rem;}
-    .service-card,.industry-card{background:rgba(255,255,255,0.04);border:2px solid var(--lime);border-radius:2.5rem;padding:1.8rem;text-align:center;}
-    .circ{width:60px;height:60px;background:var(--lime);color:#000;border-radius:50%;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:900;}
+    /* Enhanced service cards with hover effects */
+    .service-grid,.industry-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:2rem;
+      margin-top:3rem;
+    }
+    .service-card,.industry-card{
+      background:rgba(255,255,255,0.03);
+      border:2px solid rgba(204,255,0,0.3);
+      border-radius:2rem;
+      padding:2rem;
+      text-align:center;
+      transition:all 0.4s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .service-card::before,.industry-card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:linear-gradient(135deg,rgba(204,255,0,0.1),transparent);
+      opacity:0;
+      transition:opacity 0.4s ease;
+    }
+    .service-card:hover,.industry-card:hover{
+      border-color:var(--lime);
+      transform:translateY(-8px);
+      box-shadow:0 20px 40px rgba(204,255,0,0.2);
+      background:rgba(255,255,255,0.06);
+    }
+    .service-card:hover::before,.industry-card:hover::before{opacity:1;}
+    
+    .service-card p{font-size:0.95rem;margin-top:0.8rem;opacity:0.85;position:relative;z-index:1;}
+    .service-card strong,.industry-card strong{position:relative;z-index:1;}
+    
+    .circ{
+      width:60px;
+      height:60px;
+      background:linear-gradient(135deg,var(--lime),#88ff00);
+      color:#000;
+      border-radius:50%;
+      margin:0 auto 1rem;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.5rem;
+      font-weight:900;
+      position:relative;
+      z-index:1;
+      box-shadow:0 4px 15px rgba(204,255,0,0.4);
+      transition:transform 0.3s ease;
+    }
+    .service-card:hover .circ,.industry-card:hover .circ{
+      transform:scale(1.1) rotate(360deg);
+    }
 
-    .speech{background:#111;border:3px solid #fff;border-radius:3rem;padding:2.5rem;margin:4rem auto;max-width:900px;font-size:1.25rem;position:relative;}
-    .speech:before{content:'';position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);border:20px solid transparent;border-top:20px solid #fff;}
+    /* Enhanced infrastructure section */
+    .infra{
+      background:linear-gradient(135deg,var(--yellow),#ffed4e);
+      color:#000;
+      padding:4rem 2rem;
+      border-radius:3rem;
+      margin:2rem 1rem;
+      text-align:center;
+      box-shadow:0 20px 60px rgba(255,255,0,0.3);
+      position:relative;
+      overflow:hidden;
+    }
+    .infra::after{
+      content:'⚡';
+      position:absolute;
+      font-size:15rem;
+      opacity:0.1;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      animation:pulse 3s ease-in-out infinite;
+    }
+    
+    @keyframes pulse{
+      0%, 100%{transform:translate(-50%,-50%) scale(1);}
+      50%{transform:translate(-50%,-50%) scale(1.1);}
+    }
+    
+    .infra h2{font-size:3rem;margin-bottom:1rem;position:relative;z-index:1;}
+    .infra p{font-size:1.25rem;max-width:900px;margin:1rem auto;position:relative;z-index:1;}
 
-    .funnel-img{max-width:100%;border-radius:1.5rem;box-shadow:0 0 80px var(--cyan);margin-top:3rem;}
+    /* Enhanced agent cards */
+    .agent-grid{display:grid;gap:2.5rem;margin-top:3rem;}
+    .agent-card{
+      background:rgba(255,0,199,0.08);
+      border:3px solid var(--pink);
+      border-radius:3rem;
+      padding:3rem;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:2.5rem;
+      align-items:center;
+      transition:all 0.4s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .agent-card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg,transparent,rgba(255,0,200,0.2),transparent);
+      transition:left 0.6s ease;
+    }
+    .agent-card:hover::before{left:100%;}
+    .agent-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 25px 50px rgba(255,0,200,0.3);
+      border-color:var(--yellow);
+    }
+    
+    @media(max-width:768px){.agent-card{grid-template-columns:1fr;text-align:center;padding:2.5rem;}}
+    .agent-card h3{
+      font-size:2.2rem;
+      color:var(--yellow);
+      margin-bottom:1rem;
+      position:relative;
+      z-index:1;
+    }
+    .agent-card p{font-size:1.1rem;line-height:1.6;position:relative;z-index:1;}
+    .agent-card img{
+      border-radius:2rem;
+      width:100%;
+      box-shadow:0 10px 40px rgba(0,0,0,0.3);
+      transition:transform 0.4s ease;
+      position:relative;
+      z-index:1;
+    }
+    .agent-card:hover img{transform:scale(1.05) rotate(-2deg);}
+    
+    .agent-btn{
+      background:linear-gradient(135deg,var(--lime),#88ff00);
+      color:#000;
+      padding:1rem 2.5rem;
+      border-radius:999px;
+      font-weight:900;
+      display:inline-block;
+      margin-top:1.5rem;
+      text-decoration:none;
+      font-size:1rem;
+      box-shadow:0 4px 20px rgba(204,255,0,0.4);
+      transition:all 0.3s ease;
+      position:relative;
+      z-index:1;
+    }
+    .agent-btn:hover{
+      transform:translateY(-2px) scale(1.05);
+      box-shadow:0 8px 30px rgba(204,255,0,0.6);
+    }
 
-    .infra{background:var(--yellow);color:#000;padding:5rem 2rem;border-radius:3rem;margin:6rem 1rem;text-align:center;}
-    .infra h2{font-size:3rem;}
+    /* Enhanced jobs section */
+    .jobs{
+      background:linear-gradient(135deg,var(--lime),#88ff00);
+      color:#000;
+      padding:4rem 2rem;
+      border-radius:3rem;
+      margin:2rem 1rem;
+      text-align:center;
+      box-shadow:0 20px 60px rgba(204,255,0,0.3);
+    }
+    .jobs h2{margin-bottom:1rem;}
+    .jobs p{font-size:1.15rem;max-width:700px;margin:0.8rem auto;}
 
-    .agent-grid{display:grid;gap:4rem;margin-top:4rem;}
-    .agent-card{background:rgba(255,0,199,0.12);border:4px solid var(--pink);border-radius:3rem;padding:3rem;display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center;}
-    @media(max-width:768px){.agent-card{grid-template-columns:1fr;text-align:center;}}
-    .agent-card h3{font-size:2.4rem;color:var(--yellow);margin-bottom:1rem;}
-    .agent-btn{background:var(--lime);color:#000;padding:0.9rem 2.5rem;border-radius:999px;font-weight:900;display:inline-block;margin-top:1.5rem;}
+    /* Enhanced CTA section */
+    .cta{padding:3rem 2rem;text-align:center;}
+    .cta h2{
+      font-size:3.8rem;
+      margin-bottom:1rem;
+      background:linear-gradient(135deg,var(--pink),var(--purple),var(--cyan));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+    @media(max-width:768px){.cta h2{font-size:2.4rem;}}
+    .cta p{font-size:1.4rem;margin-bottom:2rem;}
+    
+    .email-input{
+      padding:1.2rem 2rem;
+      width:100%;
+      max-width:500px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.08);
+      border:2px solid rgba(255,255,255,0.3);
+      font-size:1.1rem;
+      margin:2rem auto;
+      display:block;
+      color:#fff;
+      transition:all 0.3s ease;
+      font-family:'Inter',sans-serif;
+    }
+    .email-input:focus{
+      outline:none;
+      border-color:var(--lime);
+      background:rgba(255,255,255,0.12);
+      box-shadow:0 0 30px rgba(204,255,0,0.3);
+    }
+    .email-input::placeholder{color:rgba(255,255,255,0.5);}
+    
+    .btn-cta{
+      background:linear-gradient(135deg,var(--lime),#88ff00);
+      color:#000;
+      padding:1.2rem 4rem;
+      border-radius:999px;
+      font-size:1.4rem;
+      font-weight:900;
+      border:none;
+      cursor:pointer;
+      box-shadow:0 6px 30px rgba(204,255,0,0.5);
+      transition:all 0.3s ease;
+      font-family:'Inter',sans-serif;
+    }
+    .btn-cta:hover{
+      transform:translateY(-3px) scale(1.05);
+      box-shadow:0 10px 40px rgba(204,255,0,0.7);
+    }
 
-    .jobs,.press{padding:5rem 2rem;border-radius:3rem;margin:6rem 1rem;text-align:center;}
-    .jobs{background:var(--lime);color:#000;}
-    .press{background:linear-gradient(135deg,#8b00ff,var(--pink));}
-
-    .cta{padding:8rem 2rem;text-align:center;}
-    .cta h2{font-size:4.2rem;margin-bottom:1rem;}
-    @media(max-width:768px){.cta h2{font-size:2.6rem;}}
-    .email-input{padding:1.3rem 2rem;width:100%;max-width:500px;border-radius:999px;background:rgba(255,255,255,0.1);border:3px solid #fff;font-size:1.1rem;margin:2rem auto;display:block;}
-    .btn-cta{background:var(--lime);color:#000;padding:1.3rem 4rem;border-radius:999px;font-size:1.5rem;font-weight:900;}
+    /* Enhanced footer */
+    footer{
+      padding:3rem 0;
+      text-align:center;
+      background:rgba(17,17,17,0.8);
+      backdrop-filter:blur(20px);
+      border-top:2px solid rgba(255,255,255,0.1);
+    }
+    footer p{font-size:0.95rem;}
+    footer a{
+      color:#fff;
+      text-decoration:none;
+      transition:all 0.3s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:45px;
+      height:45px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.05);
+    }
+    footer a:hover{
+      color:var(--lime);
+      background:rgba(204,255,0,0.1);
+      transform:translateY(-3px) rotate(5deg);
+    }
   </style>
 </head>
 <body>
@@ -96,9 +540,7 @@
   <section class="lime-block">
     <div class="container">
       <h2>50+ qualified meetings per month<br>— delivered by AI agents that never sleep.</h2>
-      <p style="font-size:1.2rem;max-width:800px;margin:1.5rem auto;">
-        Fully autonomous lead generation platform. Built for B2B founders who want pipeline without the overhead.
-      </p>
+      <p>Fully autonomous lead generation platform. Built for B2B founders who want pipeline without the overhead.</p>
       <img src="orange.jpeg" class="founder-img" alt="Founder">
     </div>
   </section>
@@ -111,7 +553,7 @@
         <div class="service-card"><div class="circ">02</div><strong>Lead Intelligence</strong><p>Real-time LinkedIn + company enrichment</p></div>
         <div class="service-card"><div class="circ">03</div><strong>Meeting Booking</strong><p>AI books calls directly on your calendar</p></div>
         <div class="service-card"><div class="circ">04</div><strong>Deliverability Engine</strong><p>Warm-up, reputation, and inbox placement built-in</p></div>
-        <div class="service-card"><div class="circ">05</div><strong>Lead Scoring</strong><p>Jellyfish predicts who’s ready to buy</p></div>
+        <div class="service-card"><div class="circ">05</div><strong>Lead Scoring</strong><p>Jellyfish predicts who's ready to buy</p></div>
         <div class="service-card"><div class="circ">06</div><strong>Chatbot Layer</strong><p>Website → qualified meeting in <60 seconds</p></div>
       </div>
     </div>
@@ -119,15 +561,13 @@
 
   <section>
     <div class="container">
-
-      <h2 style="font-size:3.5rem;line-height:1.1;background:linear-gradient(90deg,#fff,var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+      <h2 style="font-size:3.2rem;line-height:1.15;background:linear-gradient(135deg,#fff,var(--pink),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
         We look beyond industry barriers;<br>precision outreach
       </h2>
-      
     </div>
   </section>
 
-  <section>
+  <section style="padding-top:2rem;">
     <div class="container industry-grid">
       <div class="industry-card"><div class="circ">01</div><strong>AI / ML Startups</strong></div>
       <div class="industry-card"><div class="circ">02</div><strong>Renewable Energy</strong></div>
@@ -138,35 +578,26 @@
     </div>
   </section>
 
-  <section style="text-align:center;">
-    <div class="container">
-      <h2>Own your entire funnel</h2>
-      <img src="https://via.placeholder.com/1100x550/00ffff/000?text=Funnel+100%25+→+35%25" class="funnel-img" alt="Funnel">
-    </div>
-  </section>
-
   <section class="infra">
     <div class="container">
       <h2>Agentic AI Email Infrastructure</h2>
-      <p style="font-size:1.3rem;max-width:900px;margin:2rem auto;">
-        We built our own platform from scratch because nothing else could handle autonomous multi-agent workflows at scale.
-      </p>
+      <p>We built our own platform from scratch because nothing else could handle autonomous multi-agent workflows at scale.</p>
     </div>
   </section>
 
   <section id="agents">
     <div class="container agent-grid">
       <div class="agent-card">
-        <div><img src="https://via.placeholder.com/500x500/00ff20/000?text=Seal" style="border-radius:2rem;width:100%;" alt="Seal"></div>
+        <div><img src="https://via.placeholder.com/500x500/00ff20/000?text=Seal" alt="Seal"></div>
         <div><h3>Seal the Sender</h3><p>Orchestrates your entire campaign — warm-up, sending, follow-ups, replies.</p><a href="#cta" class="agent-btn">REQUEST EARLY ACCESS</a></div>
       </div>
       <div class="agent-card">
         <div><h3>Octopus the Data Miner</h3><p>Finds and verifies your ideal prospects across LinkedIn, Apollo, web — 24/7.</p><a href="#cta" class="agent-btn">REQUEST EARLY ACCESS</a></div>
-        <div><img src="https://via.placeholder.com/500x500/ff69b4/000?text=Octopus" style="border-radius:2rem;width:100%;" alt="Octopus"></div>
+        <div><img src="https://via.placeholder.com/500x500/ff69b4/000?text=Octopus" alt="Octopus"></div>
       </div>
       <div class="agent-card">
-        <div><img src="Jellyfish.png" style="border-radius:2rem;width:100%;" alt="Jellyfish"></div>
-        <div><h3>Jellyfish the Lead Scorer</h3><p>Predicts intent in real time. Knows who’s ready to book before they do.</p><a href="#cta" class="agent-btn">REQUEST EARLY ACCESS</a></div>
+        <div><img src="Jellyfish.png" alt="Jellyfish"></div>
+        <div><h3>Jellyfish the Lead Scorer</h3><p>Predicts intent in real time. Knows who's ready to book before they do.</p><a href="#cta" class="agent-btn">REQUEST EARLY ACCESS</a></div>
       </div>
     </div>
   </section>
@@ -174,29 +605,37 @@
   <section class="jobs">
     <div class="container">
       <h2>Jobs @ Mailseal</h2>
-      <p>We’re hiring builders who ship fast and love AI.</p>
-      <p style="margin-top:2rem;">jobs@mailseal.co</p>
+      <p style="font-size:1.35rem;font-weight:700;margin-top:1rem;">Our Team is Growing</p>
+      <p style="margin-top:0.8rem;">Want to join our All-Star team of super talented, tech-savvy, coffee-drinking, pizza-loving individuals? We'd love to have you on board.</p>
+      <p style="margin-top:1.5rem;font-weight:700;font-size:1.2rem;">jobs@mailseal.co</p>
     </div>
   </section>
 
   <section class="cta" id="cta">
     <div class="container">
       <h2>Private Beta — Limited Spots</h2>
-      <p style="font-size:1.6rem;">Be first. No credit card required.</p>
+      <p>Be first. No credit card required.</p>
       <input type="email" placeholder="name@company.com" class="email-input">
       <button class="btn-cta">REQUEST EARLY ACCESS</button>
-      <p style="margin-top:3rem;">Or email → dani@mailseal.co</p>
+      <p style="margin-top:2.5rem;font-size:1.15rem;opacity:0.8;">Or email → dani@mailseal.co</p>
     </div>
   </section>
 
-  <footer style="padding:4rem 0;text-align:center;background:#111;opacity:0.7;">
+  <footer>
     <div class="container">
-      <p>© 2025 Mailseal • Private Beta</p>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:2rem;">
+        <div style="text-align:left;">
+          <p style="font-weight:700;margin-bottom:0.5rem;font-size:1rem;">📍 San Francisco, CA</p>
+          <p style="opacity:0.8;">© 2025 Mailseal • Private Beta</p>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:center;">
+          <a href="https://twitter.com/mailseal" aria-label="Twitter">𝕏</a>
+          <a href="https://linkedin.com/company/mailseal" aria-label="LinkedIn">in</a>
+          <a href="https://github.com/mailseal" aria-label="GitHub">⚡</a>
+        </div>
+      </div>
     </div>
   </footer>
 
 </body>
 </html>
-
-
-
